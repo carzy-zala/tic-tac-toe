@@ -1,10 +1,11 @@
-
-import { ADD, UNDO } from "../action";
+import { ADD, UNDO, RESET, WINNER, DRAW } from "../action";
 
 const intialValue = {
-  previousBoard: [],
-  board: [],
+  previousBoard: [Array(9).fill(null)],
+  board: Array(9).fill(null),
   value: "X",
+  isGameOver: false,
+  winnerValue: null,
 };
 
 function Reducer(state = intialValue, action) {
@@ -15,14 +16,28 @@ function Reducer(state = intialValue, action) {
     case ADD:
       return {
         ...state,
-        previousBoard: [...state.previousBoard,nextArry],
+        previousBoard: [...state.previousBoard, nextArry],
         board: nextArry,
         value: state.value === "X" ? "O" : "X",
       };
     case UNDO:
       return {
         ...state,
-        board: state.previousBoard[action.payload],
+        board: [...state.previousBoard[action.payload]],
+      };
+    case RESET:
+      return {
+        ...intialValue,
+      };
+    case WINNER:
+      return {
+        ...state,
+        isGameOver: true,
+        winnerValue: state.value,
+      };
+    case DRAW:
+      return {
+        ...intialValue,
       };
     default:
       return {
@@ -31,4 +46,4 @@ function Reducer(state = intialValue, action) {
   }
 }
 
-export default Reducer
+export default Reducer;

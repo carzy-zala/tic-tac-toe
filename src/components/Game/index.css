@@ -1,0 +1,13 @@
+.prevBoard-btns{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items:center;
+    margin-top: 20px;
+}
+
+.prevBoard-btn{
+    margin: 5px;
+    padding: 5px 20px;
+    font-size: 1em;
+}

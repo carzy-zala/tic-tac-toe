@@ -7,13 +7,15 @@ function Square({ value, index }) {
   const dispach = useDispatch();
 
   const handleClick = (index) => {
-    value ? console.log("Can't clickable") : dispach(addValue(index));
+    value ? alert("Can't clickable") : dispach(addValue(index));
   };
 
   return (
-    <button 
-    style={{"color":value==="X" ? "red" : "blue"}}
-    className="sqr" onClick={() => handleClick(index)}>
+    <button
+      style={{ color: value === "X" ? "red" : "blue" }}
+      className="sqr"
+      onClick={() => handleClick(index)}
+    >
       {value}
     </button>
   );
