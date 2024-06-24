@@ -1,14 +1,14 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { addValue } from "../../action";
 import "./index.css";
 
-function Square({ value, index }) {
+function Square({ value, index ,isGameOver}) {
   const dispatch = useDispatch();
-  const isGameOver = useSelector((store) => useSelector.isGameOver);
-
+ 
   const handleClick = (index) => {
-    value && !isGameOver ? alert("Can't clickable") : dispatch(addValue(index));
+    
+    value || isGameOver ? alert("Can't clickable") : dispatch(addValue(index));
   };
 
   return (

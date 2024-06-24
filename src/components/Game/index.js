@@ -9,6 +9,9 @@ function Game() {
   const dispatch = useDispatch();
  
   const handleUndo = (index) => {
+    if(index === prevBoard.length - 1){
+      alert("You are on same step")
+    }
     dispatch(undo(index));
   };
 

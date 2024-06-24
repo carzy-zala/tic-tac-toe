@@ -1,4 +1,4 @@
-import React,{useEffect} from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Square from "../Square";
 import Game from "../Game";
@@ -13,23 +13,24 @@ function Board() {
   const winnerValue = useSelector((store) => store.winnerValue);
   const dispatch = useDispatch();
 
-  useEffect(()=>{
-    if(IsWinner(board)){
-      alert(`winner is `)
+  useEffect(() => {
+    if (IsWinner(board)) {
+      dispatch(winner());
+      // alert(`winner is `)
     }
-  },[board])
+  }, [board]);
 
   const status = () => {
-    const temp = [...board]
-    if(!temp.includes(null)){
+    const temp = [...board];
+    if (!temp.includes(null)) {
       return "Match is Draw !! Please click reset ..";
     }
 
-    const str = isGameOver ?  `Game wone by ${winnerValue}` : 
-       `Next move by ${Value}`
-    
-    
-    return str
+    const str = isGameOver
+      ? `Game wone by ${winnerValue} !! Please click on reset ..`
+      : `Next move by ${Value}`;
+
+    return str;
   };
 
   return (
@@ -40,21 +41,21 @@ function Board() {
       <div className="main-section">
         <div>
           <div className="container-row">
-            <Square index={0} value={board[0]} />
-            <Square index={1} value={board[1]} />
-            <Square index={2} value={board[2]} />
+            <Square index={0} value={board[0]} isGameOver={isGameOver} />
+            <Square index={1} value={board[1]} isGameOver={isGameOver} />
+            <Square index={2} value={board[2]} isGameOver={isGameOver} />
           </div>
 
           <div className="container-row">
-            <Square index={3} value={board[3]} />
-            <Square index={4} value={board[4]} />
-            <Square index={5} value={board[5]} />
+            <Square index={3} value={board[3]} isGameOver={isGameOver} />
+            <Square index={4} value={board[4]} isGameOver={isGameOver} />
+            <Square index={5} value={board[5]} isGameOver={isGameOver} />
           </div>
 
           <div className="container-row">
-            <Square index={6} value={board[6]} />
-            <Square index={7} value={board[7]} />
-            <Square index={8} value={board[8]} />
+            <Square index={6} value={board[6]} isGameOver={isGameOver} />
+            <Square index={7} value={board[7]} isGameOver={isGameOver} />
+            <Square index={8} value={board[8]} isGameOver={isGameOver} />
           </div>
 
           <button className="rst-btn" onClick={() => dispatch(reset())}>

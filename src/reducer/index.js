@@ -24,13 +24,13 @@ function Reducer(state = intialValue, action) {
       return {
         ...state,
         board: [...state.previousBoard[action.payload]],
+        value: action.payload%2 === 0 ? "X" : "O"
       };
     case RESET:
       return {
         ...intialValue,
       };
     case WINNER:
-      console.log("val")
       return {
         ...state,
         isGameOver: true,
