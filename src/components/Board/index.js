@@ -1,5 +1,6 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
+
 import Square from "../Square";
 import Game from "../Game";
 import "./index.css";
@@ -7,11 +8,28 @@ import { reset } from "../../action";
 
 function Board() {
   const board = useSelector((store) => store.board);
+  const isGameOver = useSelector((store) => store.isGameOver);
+  const Value = useSelector((store) => store.value);
+  const winnerValue = useSelector((store) => store.winnerValue);
   const dispatch = useDispatch();
+
+  const status = () => {
+    const temp = [...board]
+    if(!temp.includes(null)){
+      return "Match is Draw !! Please click reset ..";
+    }
+
+    const str = isGameOver ?  `Game wone by ${winnerValue}` : 
+       `Next move by ${Value}`
+    
+    
+    return str
+  };
 
   return (
     <div className="container-main">
       <h1>Tic-Tac-Toe</h1>
+      <h1>{status()}</h1>
 
       <div className="main-section">
         <div>

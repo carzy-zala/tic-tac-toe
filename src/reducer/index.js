@@ -30,10 +30,11 @@ function Reducer(state = intialValue, action) {
         ...intialValue,
       };
     case WINNER:
+      console.log("val")
       return {
         ...state,
         isGameOver: true,
-        winnerValue: state.value,
+        winnerValue: state.value === "X" ? "O" : "X",
       };
     case DRAW:
       return {

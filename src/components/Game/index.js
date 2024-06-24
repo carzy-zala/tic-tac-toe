@@ -3,10 +3,11 @@ import "./index.css";
 import { useSelector, useDispatch } from "react-redux";
 import { undo } from "../../action";
 
+
 function Game() {
   const prevBoard = useSelector((store) => store.previousBoard);
   const dispatch = useDispatch();
-
+ 
   const handleUndo = (index) => {
     dispatch(undo(index));
   };
