@@ -1,10 +1,10 @@
-import React from "react";
+import React,{useEffect} from "react";
 import { useSelector, useDispatch } from "react-redux";
-
 import Square from "../Square";
 import Game from "../Game";
 import "./index.css";
-import { reset } from "../../action";
+import { reset, winner } from "../../action";
+import IsWinner from "../IsWinner";
 
 function Board() {
   const board = useSelector((store) => store.board);
@@ -12,6 +12,12 @@ function Board() {
   const Value = useSelector((store) => store.value);
   const winnerValue = useSelector((store) => store.winnerValue);
   const dispatch = useDispatch();
+
+  useEffect(()=>{
+    if(IsWinner(board)){
+      alert(`winner is `)
+    }
+  },[board])
 
   const status = () => {
     const temp = [...board]
@@ -29,7 +35,7 @@ function Board() {
   return (
     <div className="container-main">
       <h1>Tic-Tac-Toe</h1>
-      <h1>{status()}</h1>
+      <h3>{status()}</h3>
 
       <div className="main-section">
         <div>

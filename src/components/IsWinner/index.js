@@ -1,9 +1,8 @@
-import { useSelector} from "react-redux";
+
 // import { winner } from "../../action";
 
-function IsWinner() {
+function IsWinner(board) {
 
-  const board = useSelector((store) => store.board);
 
   const winnerGrid = [
     [0, 1, 2],
